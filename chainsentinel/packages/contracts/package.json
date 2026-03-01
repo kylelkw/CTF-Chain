@@ -1,0 +1,10 @@
+{
+  "name": "@chainsentinel/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test",
+    "deploy:testnet": "forge script script/DeployProtectedSwapRouter.s.sol:DeployProtectedSwapRouter --rpc-url https://testnet-rpc.monad.xyz --broadcast"
+  }
+}
