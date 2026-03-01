@@ -1268,8 +1268,8 @@ export async function POST(req: NextRequest) {
 
     const txs = block.transactions;
     const ourIndex = typeof txs[0] === "string"
-      ? txs.findIndex((t) => t === txHash)
-      : txs.findIndex((t) => typeof t !== "string" && t.hash.toLowerCase() === txHash.toLowerCase());
+      ? (txs as unknown as string[]).findIndex((t) => t === txHash)
+      : (txs as unknown as { hash: string }[]).findIndex((t) => t.hash.toLowerCase() === txHash.toLowerCase());
 
     // RLP encode for hex payload reference
     const rlpHexPayload = rlpEncodeFields(actualNonce, actualGasPrice, 21000n, actualRecipient, actualValue, "0x", 10143);
