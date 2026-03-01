@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "monad-development": {
+      "source": "portdeveloper/skills",
+      "sourceType": "github",
+      "computedHash": "d715e5bc33730a127314ef0e18d73b264c3461fc9fe3ccfcde865ad51991487a"
+    }
+  }
+}
