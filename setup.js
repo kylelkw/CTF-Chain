@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const apiPath = path.join('C:', 'Users', 'tanju', 'NYhacks', 'chainsentinel', 'apps', 'web', 'src', 'app', 'api');
+const apiPath = path.join(__dirname, 'chainsentinel', 'apps', 'web', 'src', 'app', 'api');
 const claimPath = path.join(apiPath, 'ctf-claim');
 const poolPath = path.join(apiPath, 'ctf-pool');
 

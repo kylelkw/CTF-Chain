@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState, useMemo, useRef } from "react";
 import { parseEther, formatEther, type Hash } from "viem";
 import { useAccount, useSendTransaction, useWaitForTransactionReceipt, useBalance } from "wagmi";
+import { DevToolsWindow } from "./DevToolsWindow";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -304,7 +305,7 @@ export function AttackSimulator() {
         if (d.balance) {
           setPoolBalance(d.balance);
           setPoolAddress(d.address);
-          pushLog("info", "POOL", `Pool address: ${d.address} (balance: ${Number(d.balance).toFixed(4)} MON)`);
+          pushLog("info", "POOL", `Pool loaded (balance: ${Number(d.balance).toFixed(4)} MON)`);
         }
         else { pushLog("warn", "POOL", "Using fallback pool address — bot key may not match!"); }
       })
@@ -1146,14 +1147,13 @@ export function AttackSimulator() {
       <button
         onClick={() => setDevOpen((v) => !v)}
         className="fixed bottom-4 right-4 z-50 w-10 h-10 rounded-full bg-purple-600 text-white text-sm font-bold shadow-lg hover:bg-purple-500 transition-all"
-        title="Dev Tools"
+        title="Dev Tools (opens separate window)"
       >🔧</button>
 
-      {devOpen && (
-        <div className="fixed bottom-16 right-4 z-50 w-80 bg-bg-card border border-purple-500/40 rounded-lg shadow-2xl p-4 font-mono text-xs">
+      <DevToolsWindow open={devOpen} onClose={() => setDevOpen(false)}>
+        <div className="font-mono text-xs">
           <div className="flex items-center justify-between mb-3">
             <span className="font-bold text-purple-400 tracking-wider">🔧 DEV TOOLS</span>
-            <button onClick={() => setDevOpen(false)} className="text-text-muted hover:text-white">✕</button>
           </div>
 
           {/* Day selector */}
@@ -1252,7 +1252,7 @@ export function AttackSimulator() {
             <div>hasClaimed: {hasClaimed ? "true" : "false"} · totalWinnings: {totalWinnings}pts</div>
             <div>ctfScore: {ctfScore.captured}/{ctfFlags.length} flags · {ctfScore.total}/{ctfScore.max}pts</div>
             <div>phase: {phase} · poolBalance: {poolBalance}</div>
-            <div>poolAddress: {poolAddress || "(not loaded)"}</div>
+            <div>poolAddress: {poolAddress ? `${poolAddress.slice(0, 6)}…${poolAddress.slice(-4)}` : "(not loaded)"}</div>
             <div>playedToday: {playedToday ? "true" : "false"}</div>
           </div>
 
@@ -1277,7 +1277,7 @@ export function AttackSimulator() {
             >↻ Refresh</button>
           </div>
         </div>
-      )}
+      </DevToolsWindow>
     </div>
   );
 }

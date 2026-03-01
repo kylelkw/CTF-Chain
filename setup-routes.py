@@ -3,15 +3,16 @@ import shutil
 from pathlib import Path
 
 # Base directory
-base = Path("C:/Users/tanju/NYhacks/chainsentinel/apps/web/src/app/api")
+script_dir = Path(__file__).resolve().parent
+base = script_dir / "chainsentinel" / "apps" / "web" / "src" / "app" / "api"
 
 # Create directories
 (base / "ctf-claim").mkdir(parents=True, exist_ok=True)
 (base / "ctf-pool").mkdir(parents=True, exist_ok=True)
 
 # Source files
-claim_src = Path("C:/Users/tanju/NYhacks/ctf-claim-route.ts")
-pool_src = Path("C:/Users/tanju/NYhacks/ctf-pool-route.ts")
+claim_src = script_dir / "ctf-claim-route.ts"
+pool_src = script_dir / "ctf-pool-route.ts"
 
 # Destination files
 claim_dst = base / "ctf-claim" / "route.ts"

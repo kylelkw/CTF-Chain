@@ -4,7 +4,7 @@ REM This script creates the necessary directories and files
 
 setlocal enabledelayedexpansion
 
-set "API_PATH=C:\Users\tanju\NYhacks\chainsentinel\apps\web\src\app\api"
+set "API_PATH=%~dp0chainsentinel\apps\web\src\app\api"
 set "CLAIM_PATH=%API_PATH%\ctf-claim"
 set "POOL_PATH=%API_PATH%\ctf-pool"
 
@@ -21,7 +21,7 @@ if not exist "%POOL_PATH%" (
 
 echo.
 echo Copying files...
-copy /Y "C:\Users\tanju\NYhacks\ctf-claim-route.ts" "%CLAIM_PATH%\route.ts" >nul 2>&1
+copy /Y "%~dp0ctf-claim-route.ts" "%CLAIM_PATH%\route.ts" >nul 2>&1
 if errorlevel 1 (
   echo ERROR: Failed to copy ctf-claim route file
   pause
@@ -29,7 +29,7 @@ if errorlevel 1 (
 )
 echo Copied: %CLAIM_PATH%\route.ts
 
-copy /Y "C:\Users\tanju\NYhacks\ctf-pool-route.ts" "%POOL_PATH%\route.ts" >nul 2>&1
+copy /Y "%~dp0ctf-pool-route.ts" "%POOL_PATH%\route.ts" >nul 2>&1
 if errorlevel 1 (
   echo ERROR: Failed to copy ctf-pool route file
   pause

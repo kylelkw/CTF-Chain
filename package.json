@@ -1,0 +1,9 @@
+{
+  "name": "ctf-chain",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @chainsentinel/web dev",
+    "build": "pnpm --filter @chainsentinel/web build",
+    "lint": "pnpm --filter @chainsentinel/web lint"
+  }
+}

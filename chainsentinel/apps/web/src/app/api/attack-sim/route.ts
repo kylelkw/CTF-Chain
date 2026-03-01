@@ -1158,16 +1158,14 @@ export async function POST(req: NextRequest) {
     // ─── CTF CLAIM WINNINGS ─────────────────────────────────────
     if (action === "claim") {
       const { playerAddress, points } = body;
-      console.log("[CLAIM] playerAddress:", playerAddress, "points:", points);
       if (!playerAddress || !/^0x[0-9a-fA-F]{40}$/.test(playerAddress))
         return NextResponse.json({ error: "Invalid player address" }, { status: 400 });
       if (!points || typeof points !== "number" || points <= 0)
         return NextResponse.json({ error: "Points must be positive" }, { status: 400 });
 
       const k = normalizeKey(process.env.ATTACK_BOT_PRIVATE_KEY_1);
-      if (!k) return NextResponse.json({ error: `Bot key not configured (raw: ${process.env.ATTACK_BOT_PRIVATE_KEY_1?.slice(0,6)}…)` }, { status: 500 });
+      if (!k) return NextResponse.json({ error: "Bot key not configured" }, { status: 500 });
       const account = privateKeyToAccount(k);
-      console.log("[CLAIM] pool account:", account.address, "→ sending to:", playerAddress);
       const wc = createWalletClient({ account, chain: monadTestnet, transport });
 
       // 1 point = 0.00001 MON

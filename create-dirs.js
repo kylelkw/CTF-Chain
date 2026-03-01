@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const base = path.join('C:', 'Users', 'tanju', 'NYhacks', 'chainsentinel', 'apps', 'web', 'src', 'app', 'api');
+const base = path.join(__dirname, 'chainsentinel', 'apps', 'web', 'src', 'app', 'api');
 
 // Create directories
 fs.mkdirSync(path.join(base, 'ctf-claim'), { recursive: true });
